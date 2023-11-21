@@ -50,4 +50,4 @@ class ManagerLoginForm(forms.Form):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['full_name', 'email']
+        fields = ['full_name', 'image', 'email']
