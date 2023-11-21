@@ -84,13 +84,18 @@ def user_logout(request):
     return redirect('accounts:user_login')
 
 
-def edit_profile(request):
-    form = EditProfileForm(request.POST, instance=request.user)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Your profile has been updated', 'success')
-        return redirect('accounts:edit_profile')
+def edit_profile(request, id):
+    user = User.objects.get(id=id)
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile has been updated', 'success')
+            return redirect('accounts:edit_profile', id=id)
+        else:
+            messages.error(request, 'There was an error with the form. Please check the information provided.')
     else:
-        form = EditProfileForm(instance=request.user)
-    context = {'title':'Edit Profile', 'form':form}
+        form = EditProfileForm(instance=user)
+    image = user.image
+    context = {'title': 'Edit Profile', 'form': form, 'image': image}
     return render(request, 'edit_profile.html', context)

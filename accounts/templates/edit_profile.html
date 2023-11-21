@@ -1,17 +1,20 @@
 {% extends "base.html" %}
-{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="col-md-6">
-        <form method="POST">
+    <div style="display: flex; width: 1000px">
+    <div class="col-md-7" >
+        <form method="POST" enctype="multipart/form-data" >
             {% csrf_token %}
             <h3>Edit Profile</h3>
             <hr>
-            {{ form|crispy  }}
+            {{ form |crispy}}
+
             <div class="form-group">
                 <button class="btn btn-primary mt-3 w-100" type="submit">Update</button>
             </div>
         </form>
     </div>
+    <img style="object-fit: contain; height: 250px" class="card-img mt-2" width="268" height="200" src="{{ image.url }}">
+         </div>
 {% endblock %}
