@@ -99,3 +99,10 @@ def edit_profile(request, id):
     image = user.image
     context = {'title': 'Edit Profile', 'form': form, 'image': image}
     return render(request, 'edit_profile.html', context)
+
+
+def delete(request, id):
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('accounts:user_register')
+

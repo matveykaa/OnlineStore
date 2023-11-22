@@ -14,6 +14,13 @@
                 <button class="btn btn-primary mt-3 w-100" type="submit">Update</button>
             </div>
         </form>
+         <div >
+                <button class="btn btn-danger" style="width: 570px; margin-top: 10px">
+                    <a href="{% url 'accounts:delete' user.id %}" style="color:white">
+                    <i class="fas fa-pen"></i>Delete Account
+                </a>
+            </button>
+            </div>
     </div>
     <img style="object-fit: contain;  height: 300px" class="card-img mt-2" width="268" height="200" src="{{ image.url }}">
          </div>
