@@ -65,6 +65,7 @@
             <li><a class="dropdown-item text-danger" href="{% url 'accounts:user_logout' %}">Sign out</a></li>
           </ul>
         </div>
+             <img style="clip-path: circle(40%); height:70px"  src="{{ user_image }}">
         {% else %}
         <!-- login, sign-up btn -->
         <div class="text-end">
