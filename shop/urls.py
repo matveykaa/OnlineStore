@@ -12,4 +12,5 @@ urlpatterns = [
     path('favorites/', views.favorites, name='favorites'),
     path('search/', views.search, name='search'),
     path('filter/<slug:slug>/', views.filter_by_category, name='filter_by_category'),
+    path('reviews/', views.reviews, name='reviews'),
 ]

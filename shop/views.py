@@ -1,8 +1,10 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 
+from shop.forms import ReviewForm
 from shop.models import Product, Category
 from cart.forms import QuantityForm
 
@@ -90,4 +92,18 @@ def filter_by_category(request, slug):
 
 from django.shortcuts import render
 
-# Create your views here.
+
+@login_required
+def reviews(request):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            user_email = request.user.email  # Предположим, что пользователь аутентифицирован
+            review_text = form.cleaned_data['review_text'] + " -- FROM --\n" + user_email
+            send_mail('Отзыв', review_text, user_email, ['matveenkoalena2844@gmail.com'])
+            messages.success(request, 'Thank you for your review', 'success')
+            return redirect('shop:home_page')
+    else:
+        form = ReviewForm()
+
+    return render(request, 'reviews.html', {'form': form})
