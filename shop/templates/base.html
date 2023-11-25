@@ -135,7 +135,7 @@
 
 
         <div class="dropdown text-end" >
-          <a href="#" class="btn btn-primary text-white me-4 d-block link-dark  dropdown-toggle" id="dropdownUser1" style="background-color: #606060" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+          <a href="#" class="btn btn-ligh text-white me-4 d-block link-dark  dropdown-toggle" id="dropdownUser1" style="background-color: #606060" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
           <ul class="dropdown-menu" aria-labelledby="dropdownUser1" style="background-color: black">
             <li><a href="{% url 'cart:show_cart' %}" <a class="dropdown-item" >Cart</a></li>
             <li><a href="{% url 'shop:favorites' %}" <a class="dropdown-item">Favorites</a></li>
@@ -148,8 +148,8 @@
         {% else %}
         <!-- login, sign-up btn -->
         <div class="text-end">
-          <a href="{% url 'accounts:user_login' %}" class="btn btn-outline-primary me-2">Login</a>
-          <a href="{% url 'accounts:user_register' %}" class="btn btn-primary">Sign-up</a>
+          <a href="{% url 'accounts:user_login' %}" class="btn btn-dark">Login</a>
+          <a href="{% url 'accounts:user_register' %}" class="btn btn-light">Sign-up</a>
         </div>
         {% endif %}
       </div>
