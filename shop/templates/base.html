@@ -103,10 +103,10 @@
               <!-- check if category is parent -->
                 {% if not category.is_sub %}
                   <!-- parent -->
-                  <li><a href="{% url 'shop:filter_by_category' category.slug %}" class="dropdown-item text-capitalize bg-light border"><b>{{ category }}</b></a></li>
+                  <li><a href="{% url 'shop:filter_by_category' category.slug %}" class="dropdown-item text-capitalize bg-light border"><b style="color:black;">{{ category }}</b></a></li>
                   {% for child in category.sub_categories.all %}
                    <!-- child -->
-                   <li><a href="{% url 'shop:filter_by_category' child.slug %}" class="dropdown-item">{{ child }}</a></li>
+                   <li><a href="{% url 'shop:filter_by_category' child.slug %}" class="dropdown-item" style="color:black;>{{ child }}</a></li>
                   {% endfor %}
                 {% endif %}
               {% endfor %}
