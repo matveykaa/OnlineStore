@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block im %}
+    <img src="/media/pages/img_3.png" style="position:fixed; z-index: -1">
+
 {% if products %}
-<h2>Your Favorites</h2>
+<h2 style="padding: 70px 0 0 20px; color: whitesmoke">Your Favorites</h2>
 <hr>
 {% for product in products %}
-<div class="card me-2 mb-2" style="width: 16rem;">
+<div class="" style="width: 16rem; margin-left: 20px; backdrop-filter: blur(10px); border: 1px ridge rgba(128, 128, 128, 0.5)" onmouseover="this.style.boxShadow='0 0 10px 5px rgba(128, 128, 128, 0.5)'" onmouseout="this.style.boxShadow='none'">
   <img style="object-fit: cover;" class="card-img mt-2" width="268" height="200" src="{{ product.image.url }}">
-  <div class="mt-3 text-center">
-    <h5 class="card-title">{{ product.title }}</h5>
+  <div class="mt-3 text-center" >
+    <h5 class="card-title" style="color:whitesmoke;">{{ product.title }}</h5>
     <p class="text-muted">${{ product.price }}</p>
     <a href="{{ product.get_absolute_url }}" class="mb-3 btn btn-primary w-100">Buy Now</a>
   </div>
@@ -15,7 +17,7 @@
 </div>
 {% endfor %}
 {% else %}
-<div class="row">
+<div class="row" style="height: 100vh">
   <div class="col-md-2"></div>
   <div class="col-md-8 mt-5 pt-5 text-center">
     <br>
@@ -23,6 +25,8 @@
     <a href="/" class="text-primary text-decoration-none">Back</a>
   </div>
   <div class="col-md-2"></div>
-</div>
+
+    </div>
 {% endif %}
 {% endblock %}
+

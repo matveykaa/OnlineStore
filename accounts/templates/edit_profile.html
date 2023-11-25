@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block content %}
-    <div style="display: flex; width: 1000px">
-    <div class="col-md-7" >
+{% block im %}
+    <img src="/media/pages/img_3.png" style="position:fixed; z-index: -1">
+    <div style="display: flex; padding: 70px  70px 100px 100px; width:100vw;">
+    <div class="col-md-7" style="  height: 100vh;   color: whitesmoke;  ">
         <form method="POST" enctype="multipart/form-data" >
             {% csrf_token %}
             <h3>Edit Profile</h3>
@@ -12,16 +13,19 @@
 
             <div class="form-group">
                 <button class="btn btn-primary mt-3 w-100" type="submit">Update</button>
+
             </div>
+
         </form>
          <div >
-                <button class="btn btn-danger" style="width: 570px; margin-top: 10px">
+                <button class="btn btn-danger" style="margin-top: 180px; margin-left: 900px;width: 200px;">
                     <a href="{% url 'accounts:delete' user.id %}" style="color:white">
                     <i class="fas fa-pen"></i>Delete Account
                 </a>
             </button>
             </div>
     </div>
-    <img style="object-fit: contain;  height: 300px" class="card-img mt-2" width="268" height="200" src="{{ image.url }}">
+
+    <img style=" padding: 15px; object-fit: contain; z-index: -1; height: 250px" class="card-img mt-2" width="268" height="200" src="{{ image.url }}">
          </div>
 {% endblock %}

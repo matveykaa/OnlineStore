@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="col-md-2"></div>
+{% block im %}
+    <img src="/media/pages/img_3.png" style="position:fixed; z-index: -1">
+<div class="col-md-2" style="  padding: 70px  3px 3px 3px;   color: whitesmoke;  "></div>
 {% if cart_count != 0 %}
-<div class="col-md-8 border rounded p-3">
+    <div style="height:100vh">
+<div class="col-md-8 border rounded p-3" style="backdrop-filter: blur(10px);">
 <table class="table table-striped ">
-    <thead class="text-muted">
+    <thead class="text-muted" >
       <tr>
         <th scope="col"></th>
         <th scope="col">product</th>
@@ -18,11 +20,11 @@
     {% for item in cart %}
     <tbody>
       <tr>
-        <th scope="row">{{ forloop.counter }}</th>
+        <th style="color: whitesmoke"  scope="row">{{ forloop.counter }}</th>
         <td><a class="text-decoration-none" href="{{ item.product.get_absolute_url }}">{{ item.product.title }}</a></td>
-        <td>${{ item.price }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>${{ item.total_price }}</td>
+        <td style="color: whitesmoke" >${{ item.price }}</td>
+        <td style="color: whitesmoke" >{{ item.quantity }}</td>
+        <td style="color: whitesmoke" > ${{ item.total_price }}</td>
         <td><a class="text-danger text-decoration-none" href="{% url 'cart:remove_from_cart' item.product.id %}">remove</a></td>
       </tr>
     </tbody>
@@ -30,8 +32,9 @@
 </table>
 <hr>
 <a href="{% url 'orders:create_order' %}" style="float: right;" class="btn btn-success mt-1">Checkout</a>
-<h4 class="mt-4"><span class="text-muted">Total:</span> ${{ cart.get_total_price }}</h4>
+<h4 class="mt-4" style="color: whitesmoke" ><span class="text-muted"  >Total:</span> ${{ cart.get_total_price }}</h4>
 </div>
+    </div>
 {% else %}
 <div class="col-md-8 mt-5 pt-5 text-center">
   <br>
@@ -42,3 +45,4 @@
 <div class="col-md-2"></div>
 
 {% endblock %}
+

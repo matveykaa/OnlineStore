@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block content %}
-
+{% block im %}
+    <img src="/media/pages/img_3.png" style="position:fixed; z-index: -1">
+    <div style="padding: 70px">
 {% if orders %}
 {% for order in orders %}
-<div class="col-md-7 mb-4 border rounded p-3">
+<div class="col-md-7 mb-4 border rounded p-3" style="padding: 70px 0 0 20px; color: whitesmoke">
 <!-- order id on right -->
 <b style="float: right;">Order Id: {{ order.id }}</b>
 <!-- order payment status -->
@@ -13,7 +14,7 @@
 {% else %}
     <h3><b class="text-danger">Cancelled</b></h3>
 {% endif %}
-<div class="text-muted border-top pt-2"></div>
+<div class="text-muted border-top pt-2" style="padding: 70px 0 0 20px; color: whitesmoke"></div>
 {% for item in order.items.all  %}
     <div class="border-bottom p-2">
         <p>product: <a class="text-decoration-none" href="{{ item.product.get_absolute_url }}">{{item.product.title}}</a></p>
@@ -25,7 +26,7 @@
 </div>
 {% endfor %}
 {% else %}
-<div class="row">
+<div class="row" style="padding: 70px 0 0 20px; color: whitesmoke">
     <div class="col-md-2"></div>
     <div class="col-md-8 mt-5 pt-5 text-center">
       <br>
@@ -34,6 +35,8 @@
     </div>
     <div class="col-md-2"></div>
 </div>
-{% endif %}
 
+{% endif %}
+</div>
 {% endblock %}
+

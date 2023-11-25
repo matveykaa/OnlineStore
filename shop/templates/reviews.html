@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-    <div class="col-md-6">
-        <form method="POST">
+{% block im %}
+  <img src="/media/pages/img_3.png" style="position:fixed; z-index: -1">
+<div class="col-md-6" style="  padding: 70px  70px 100px 700px; height: 100vh; width:100vw;  color: whitesmoke;  " >
+
+        <form method="POST" style="width: 500px; backdrop-filter: blur(10px);">
             {% csrf_token %}
-            <h3>Review</h3>
-            <hr>
+            <h3 style="z-index: 1">Review</h3>
+            <hr >
             {{ form|crispy }}
             <div class="form-group">
                 <button class="btn btn-primary mt-3 w-100" type="submit">Submit</button>
