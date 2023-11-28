@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -44,3 +45,19 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
+
+
+class Comments(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    # sender = models.ForeignKey(account, on_delete=models.CASCADE, null=True)
+    sender = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    body = models.TextField()
+    created = models.DateTimeField(default=timezone.now)
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.sender} - {self.product.title} - {self.created}"
+
+    class Meta:
+        ordering = ['-created']
