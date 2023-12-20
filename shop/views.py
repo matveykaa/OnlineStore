@@ -1,12 +1,16 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.core.paginator import Paginator
 
 from shop.forms import ReviewForm, CommentForm
 from shop.models import Product, Category, Comments
 from cart.forms import QuantityForm
+from .tasks import delivery
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 
 
 def paginat(request, list_objects):
@@ -106,13 +110,14 @@ from django.shortcuts import render
 
 
 @login_required
+@require_http_methods(['GET', 'POST'])
 def reviews(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
             user_email = request.user.email  # Предположим, что пользователь аутентифицирован
             review_text = form.cleaned_data['review_text'] + " -- FROM --\n" + user_email
-            send_mail('Отзыв', review_text, user_email, ['matveenkoalena2844@gmail.com'])
+            delivery.delay(review_text, user_email)
             messages.success(request, 'Thank you for your review', 'success')
             return redirect('shop:home_page')
     else:
