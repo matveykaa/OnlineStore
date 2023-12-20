@@ -115,7 +115,7 @@ def reviews(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            user_email = request.user.email  # Предположим, что пользователь аутентифицирован
+            user_email = request.user.email
             review_text = form.cleaned_data['review_text'] + " -- FROM --\n" + user_email
             delivery.delay(review_text, user_email)
             messages.success(request, 'Thank you for your review', 'success')
