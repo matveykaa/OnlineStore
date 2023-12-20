@@ -7,3 +7,7 @@ Pillow==10.1.0
 # backports.zoneinfo==0.2.2
 django-bootstrap4==23.2
 crispy_bootstrap4
+psycopg2-binary==2.9.6
+postgres==4.0
+celery[redis]==5.2.7
+python-dotenv==1.0.0

@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 
-from shop.forms import ReviewForm
-from shop.models import Product, Category
+from shop.forms import ReviewForm, CommentForm
+from shop.models import Product, Category, Comments
 from cart.forms import QuantityForm
 
 
@@ -31,15 +31,27 @@ def product_detail(request, slug):
     form = QuantityForm()
     product = get_object_or_404(Product, slug=slug)
     related_products = Product.objects.filter(category=product.category).all()[:5]
-    context = {
-        'title': product.title,
-        'product': product,
-        'form': form,
-        'favorites': 'favorites',
-        'related_products': related_products
-    }
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.product = product
+            new_comment.save()
+            # Redirect to the same page after comment submission
+            return redirect('shop:product_detail', slug=slug)
+    else:
+        comment_form = CommentForm()
+
+    context = {'title': product.title, 'product': product, 'form': form, 'favorites': 'favorites',
+               'related_products': related_products, 'comment_form': comment_form}
+
     if request.user.likes.filter(id=product.id).first():
         context['favorites'] = 'remove'
+
+    context['comment_form'] = comment_form
+
     return render(request, 'product_detail.html', context)
 
 

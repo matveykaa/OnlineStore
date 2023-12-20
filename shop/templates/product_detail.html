@@ -51,4 +51,74 @@
         {% endif %}
     {% endfor %}
 </div>
+
+
+    <div class="mt-4" style="padding: 5px">
+    <div style="display: flex; color:whitesmoke">
+        <h3>Comments:</h3>
+        <button class="write" id="write" style="background: none; border: none; padding-left: 20px; color: whitesmoke">Write comment</button>
+    </div>
+
+        <button class="btn btn-light" id='show' style="">Load comments</button>
+        <button class="btn btn-light" id="hide" style="display: none">Hide </button>
+
+    <br>
+    <div class="comments" id="comments" style="margin-top: 10px; display:none" >
+    {% for comment in product.comments.all %}
+        <div class="card" style="background-color: whitesmoke; width: 400px; margin-top: 5px">
+        <p style="padding-left: 5px"><strong>{{ comment.sender }}:</strong> {{ comment.body }}</p>
+        <p class="text-muted" style="padding-left: 5px">{{ comment.created }}</p>
+
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+<!-- Comment form -->
+<div class="mt-4" id="comm_form" style="display: none; padding: 10px">
+<div style="display: flex; color: whitesmoke">
+    <h3>Add a Comment:</h3>
+<button id="hide_form" style="background: none; border: none; color: darkgray; padding-left: 20px">Hide</button>
+</div>
+    <form style="color: whitesmoke" method="post" action="{% url 'shop:product_detail' slug=product.slug %}" >
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+    </form>
+</div>
+
+      <script>
+
+        let comments = document.getElementById('comments');
+        let show = document.getElementById('show');
+        let hide = document.getElementById('hide');
+        let write = document.getElementById('write');
+        let comm_form = document.getElementById('comm_form');
+        let hide_form = document.getElementById('hide_form');
+        console.log(comments)
+        show.addEventListener('click', function () {
+            comments.style.display = 'inline-block';
+
+            show.style.display = 'none';
+            hide.style.display = 'block';
+        });
+        write.addEventListener('click', function () {
+            comm_form.style.display = 'inline-block';
+
+        });
+
+        hide.addEventListener('click', function () {
+            comments.style.display = 'none';
+            show.style.display = 'inline-block';
+
+            hide.style.display = 'none';
+        });
+        hide_form.addEventListener('click', function () {
+            comm_form.style.display = 'none';
+
+        });
+
+  </script>
+
 {% endblock %}
