@@ -81,7 +81,7 @@
 </style>
 
 </head>
-<body >
+<body style="width: 100vw; display: flex">
 <div class="osn" style="">
 {% block h %} {% endblock %}
   <header class="black-header" id="black-header" >
@@ -144,7 +144,7 @@
             <li><a class="dropdown-item text-danger" href="{% url 'accounts:user_logout' %}">Sign out</a></li>
           </ul>
         </div>
-            <img style="clip-path: circle(40%); height:65px"  src="{{ user_image }}">
+            <img style="clip-path: circle(40%); height:60px"  src="{{ user_image }}">
         {% else %}
         <!-- login, sign-up btn -->
         <div class="text-end">
@@ -158,9 +158,9 @@
 {% block im %}{% endblock %}
 
 
-    <main class="container" style=" width: 100%; z-index: 3">
+    <main class="container" style=" width: 100vw; z-index: 3">
 
-        <div class="row mt-3" style="margin-left:-70px; width: 100vw; " id="shop" >
+        <div class="row mt-3" style=" width: 100vw; " id="shop" >
           <!-- messages -->
           {% if messages %}
             {% for message in messages %}
@@ -177,7 +177,7 @@
 
 
       </main>
-<div class="down" id="info" style="z-index:5; position:absolute">
+<div class="down" id="info" style="z-index:5; position:absolute; width: 100vw">
         <div class="right" style="padding: 10px">
             <p>Addresses</p>
             <ul style="margin-top: -15px">Surganova street 18, Minsk</ul>
