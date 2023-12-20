@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-rhl^pz-9g4zzh#8mc-rt(+estzx(tk=c_zks)h@g@4=d0*k0eg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 # Application definition
 
@@ -71,8 +71,12 @@ WSGI_APPLICATION = 'onlineStore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'matal',
+        'USER': 'matal',
+        'PASSWORD': 'matal',
+        'HOST': 'localhost',
+
     }
 }
 
