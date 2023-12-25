@@ -5,6 +5,7 @@
 {% if products %}
 <h2 style="padding: 70px 0 0 20px; color: whitesmoke">Your Favorites</h2>
 <hr>
+    <div style="display:flex; ">
 {% for product in products %}
 <div class="" style="width: 16rem; margin-left: 20px; backdrop-filter: blur(10px); border: 1px ridge rgba(128, 128, 128, 0.5)" onmouseover="this.style.boxShadow='0 0 10px 5px rgba(128, 128, 128, 0.5)'" onmouseout="this.style.boxShadow='none'">
   <img style="object-fit: cover;" class="card-img mt-2" width="268" height="200" src="{{ product.image.url }}">
@@ -15,7 +16,26 @@
   </div>
   <a href="{% url 'shop:remove_from_favorites' product.id %}" class="mb-3 btn btn-outline-danger">Remove</a>
 </div>
+
 {% endfor %}
+     </div>
+    <!-- pagination -->
+<center class="mt-5">
+  <div class="col-md-2">
+    <ul class="pagination">
+      {% if products.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">{{products.previous_page_number}}</a></li>
+      {% endif %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.number }}">{{products.number}}</a></li>
+      {% if products.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">{{products.next_page_number}}</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+      {% endif %}
+    </ul>
+  </div>
+
+</center>
 {% else %}
 <div class="row" style="height: 100vh">
   <div class="col-md-2"></div>

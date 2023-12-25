@@ -76,7 +76,7 @@ def remove_from_favorites(request, product_id):
 @login_required
 def favorites(request):
     products = request.user.likes.all()
-    context = {'title': 'Favorites', 'products': products}
+    context = {'title': 'Favorites', 'products': paginat(request, products)}
     return render(request, 'favorites.html', context)
 
 
