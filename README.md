@@ -63,3 +63,4 @@ To access the custom dashboard for managers, please use the following credential
 - Password: managerpass1234
 
 ## App Preview
+![Screencast-from-25 12 2023-04_37_15](https://github.com/matveykaa/OnlineStore/assets/101522923/11769fde-623a-4a10-a20a-cfd11f16f7f2)
