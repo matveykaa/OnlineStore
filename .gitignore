@@ -1,0 +1,6 @@
+/venv
+/.idea
+/data
+/media
+/shop/migrations/0002_comments.py
+/accounts/migrations/0004_alter_user_image.py
